@@ -1,24 +1,23 @@
-var transformBase = require('./base');
+const transformBase = require('./base');
 
 module.exports = function (babel) {
-  var baseComponentName = 'Base';
+  const baseComponentName = 'Base';
 
-  var visitor = {
-    JSXElement: function (path) {
-      var nodeName = path.node.openingElement.name.name;
+  const visitor = {
+    JSXElement(path) {
+      const nodeName = path.node.openingElement.name.name;
 
       if (baseComponentName === nodeName) {
-        var handler = transformBase(babel);
-
-        path.replaceWithMultiple(
-          handler(path.node, path.hub.file)
+        const handler = transformBase(babel);
+        path.replaceWith(
+          handler(path),
         );
       }
-    }
+    },
   };
 
   return {
-    inherits: require('babel-plugin-syntax-jsx'),
-    visitor: visitor
+    inherits: require('@babel/plugin-syntax-jsx').default,
+    visitor,
   };
 };

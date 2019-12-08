@@ -24,27 +24,33 @@
   ],
   "license": "MIT",
   "scripts": {
-    "lint": "eslint src spec",
+    "lint": "eslint src spec *.js --ignore-pattern '!*.js'",
     "test": "mocha spec/*.js",
-    "cover": "istanbul cover -x \"**/spec/**\" node_modules/mocha/bin/_mocha spec/*.js"
+    "cover": "istanbul cover -x \"**/spec/**\" node_modules/mocha/bin/_mocha spec/*.js",
+    "upgrade": "ncu -u && npm i"
   },
   "dependencies": {
-    "babel-core": "^6.1.2",
-    "babel-plugin-syntax-jsx": "^6.1.18"
+    "@babel/plugin-syntax-jsx": "^7.7.4",
+    "@babel/template": "^7.7.4"
   },
   "devDependencies": {
-    "babel-eslint": "^6.1.2",
-    "babel-preset-react": "^6.1.2",
-    "chai": "^3.5.0",
-    "chai-enzyme": "^0.5.1",
-    "coveralls": "^2.11.6",
-    "enzyme": "^2.4.1",
-    "eslint": "^3.4.0",
-    "eslint-config-airbnb": "^10.0.1",
-    "eslint-plugin-react": "^6.2.0",
-    "istanbul": "^0.4.1",
-    "mocha": "^3.0.2",
-    "react": "^15.3.x",
-    "react-dom": "^15.3.x"
+    "@babel/core": "^7.7.5",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/register": "^7.7.4",
+    "babel-eslint": "^10.0.3",
+    "chai": "^4.2.0",
+    "chai-enzyme": "^1.0.0-beta.0",
+    "coveralls": "^3.0.9",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-react": "^7.17.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^6.2.2",
+    "react": "^16.12.x",
+    "react-dom": "^16.12.x",
+    "npm-check-updates": "^3.2.2"
   }
 }

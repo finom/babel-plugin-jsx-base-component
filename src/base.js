@@ -1,80 +1,71 @@
-var astUtil = require('./util/ast');
+const { default: template } = require('@babel/template');
+const astUtil = require('./util/ast');
 
-var COMPONENT_DEFAULT_NAME = 'div';
-var COMPONENT_VARIABLE_NAME = 'Component$';
+const buildNonConditional = template(`
+  (COMPONENT_VARIABLE = COMPONENT_VALUE, COMPONENT)
+`);
 
-function getComponentName(babelTypes, componentAttribute) { // {{{
-  var componentName = COMPONENT_DEFAULT_NAME;
+const buildConditional = template(`
+  (COMPONENT_VARIABLE = COMPONENT_VALUE, EXISTS ? COMPONENT : null)
+`);
 
-  // component name from string attribute value: <Base component="strong" />
-  if (babelTypes.isStringLiteral(componentAttribute)) {
-    componentName = componentAttribute.value;
-  } else
-  // component name from conditional expression attribute value:
-  // <Base component={a === b ? 'strong' : 'em'} />
-  if (babelTypes.isConditionalExpression(componentAttribute)) {
-    componentName = COMPONENT_VARIABLE_NAME;
-  } else
-  // component name from expression attribute value: <Base component={Link} />
-  if (babelTypes.isIdentifier(componentAttribute)) {
-    componentName = COMPONENT_VARIABLE_NAME;
-  }
 
-  return componentName;
-} // }}}
+const COMPONENT_DEFAULT_NAME = 'div';
+const baseAttributes = {
+  exists: 'exists',
+  component: 'component',
+};
 
 module.exports = function (babel) {
-  var types = babel.types;
-  var baseAttributes = {
-    exists: 'exists',
-    component: 'component'
-  };
+  const { types: t } = babel;
 
-  return function (node) {
-    var result = [];
+  return function (path) {
+    const { node } = path;
 
-    var children = astUtil.getChildren(types, node);
-    var attributes = astUtil.getAttributes(node);
+    const children = astUtil.getChildren(t, node);
+    const attributes = astUtil.getAttributes(node);
 
-    var existsAttribute = astUtil.getAttribute(types, attributes, baseAttributes.exists);
-    var componentAttribute = astUtil.getAttributeValue(types, attributes, baseAttributes.component);
+    const existsAttribute = astUtil.getAttribute(t, attributes, baseAttributes.exists);
 
-    var availableAttributes = attributes.filter(function (attr) {
-      return (
-        types.isJSXSpreadAttribute(attr)
+    const availableAttributes = attributes.filter((attr) => (
+      t.isJSXSpreadAttribute(attr)
         || typeof baseAttributes[attr.name.name] === 'undefined'
-      );
-    });
+    ));
 
-    var componentName = getComponentName(types, componentAttribute);
+    const COMPONENT_VARIABLE = path.hub.file.path.scope.generateUidIdentifier('Base');
+    const COMPONENT_VALUE = astUtil.getAttributeValue(
+      t,
+      attributes,
+      baseAttributes.component,
+    ) || t.stringLiteral(COMPONENT_DEFAULT_NAME);
 
-    if (componentName === COMPONENT_VARIABLE_NAME) {
-      result.push(
-        astUtil.getVariableDeclaration(
-          types,
-          'var',
-          componentName,
-          componentAttribute
-        )
-      );
+    const COMPONENT = astUtil.getjSXElement(
+      t,
+      COMPONENT_VARIABLE.name,
+      availableAttributes,
+      children,
+    );
+
+    const variable = t.variableDeclaration('var', [
+      t.variableDeclarator(
+        COMPONENT_VARIABLE,
+        null,
+      ),
+    ]);
+
+    path.hub.file.path.get('body')[0].insertBefore(variable);
+
+    if (existsAttribute && existsAttribute.value) {
+      const EXISTS = existsAttribute.value.expression;
+
+
+      return buildConditional({
+        COMPONENT, COMPONENT_VARIABLE, COMPONENT_VALUE, EXISTS,
+      }).expression;
     }
 
-    var yes = astUtil.getjSXElement(
-      types,
-      componentName,
-      availableAttributes,
-      children
-    );
-    var no = types.NullLiteral();
-
-    var existsConditionExpression = astUtil.getAttributeConditionExpression(
-      types, baseAttributes.exists, existsAttribute
-    );
-
-    result.push(
-      types.ConditionalExpression(existsConditionExpression, yes, no)
-    );
-
-    return result;
+    return buildNonConditional({
+      COMPONENT, COMPONENT_VARIABLE, COMPONENT_VALUE,
+    }).expression;
   };
 };

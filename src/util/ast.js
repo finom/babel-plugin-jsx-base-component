@@ -17,7 +17,7 @@ function getAttributes(node) { // {{{
  * @returns {JSXAttribute | JSXSpreadAttribute}
  */
 function getAttribute(babelTypes, attributes, name) { // {{{
-  return (attributes || []).find(function (attr) {
+  return (attributes || []).find((attr) => {
     if (babelTypes.isJSXSpreadAttribute(attr)) {
       return false;
     }
@@ -35,37 +35,19 @@ function getAttribute(babelTypes, attributes, name) { // {{{
  * @returns {JSXElement | StringLiteral | Expression}
  */
 function getAttributeValue(babelTypes, attributes, name) { // {{{
-  var attribute = getAttribute(babelTypes, attributes, name);
+  const attribute = getAttribute(babelTypes, attributes, name);
 
   if (typeof attribute === 'undefined') {
     return attribute;
   }
 
-  var attributeValue = attribute.value;
+  const attributeValue = attribute.value;
 
   if (typeof attributeValue.expression !== 'undefined') {
     return attributeValue.expression;
   }
 
   return attributeValue;
-} // }}}
-
-/**
- *
- *
- * @param {object} babelTypes - Babel lib
- * @param {var | let | const} kind
- * @param {String} name - Variable name.
- * @param {Expression} value - Variable value.
- * @returns {VariableDeclaration}
- */
-function getVariableDeclaration(babelTypes, kind, name, value) { // {{{
-  return babelTypes.variableDeclaration(kind, [
-    babelTypes.variableDeclarator(
-      babelTypes.identifier(name),
-      value
-    )
-  ]);
 } // }}}
 
 /**
@@ -76,46 +58,30 @@ function getVariableDeclaration(babelTypes, kind, name, value) { // {{{
  * @returns {array}
  */
 function getChildren(babelTypes, node) { // {{{
-  var children = babelTypes.react.buildChildren(node);
+  const children = babelTypes.react.buildChildren(node);
 
-  return children.map(function (item) {
+  return children.map((item) => {
     if (babelTypes.isStringLiteral(item)) {
       return babelTypes.JSXText(item.value);
     }
 
     if (
-      babelTypes.isIdentifier(item) ||
-      babelTypes.isMemberExpression(item) ||
-      babelTypes.isCallExpression(item) ||
-      babelTypes.isConditionalExpression(item) ||
-      babelTypes.isLogicalExpression(item) ||
-      babelTypes.isFunctionExpression(item) ||
-      babelTypes.isArrowFunctionExpression(item) ||
-      babelTypes.isArrayExpression(item) ||
-      babelTypes.isNumericLiteral(item) ||
-      babelTypes.isBooleanLiteral(item)
+      babelTypes.isIdentifier(item)
+      || babelTypes.isMemberExpression(item)
+      || babelTypes.isCallExpression(item)
+      || babelTypes.isConditionalExpression(item)
+      || babelTypes.isLogicalExpression(item)
+      || babelTypes.isFunctionExpression(item)
+      || babelTypes.isArrowFunctionExpression(item)
+      || babelTypes.isArrayExpression(item)
+      || babelTypes.isNumericLiteral(item)
+      || babelTypes.isBooleanLiteral(item)
     ) {
       return babelTypes.jSXExpressionContainer(item);
     }
 
     return item;
   });
-} // }}}
-
-/**
- *
- *
- * @param {object} babelTypes - Babel lib
- * @param {String} nameAttribute -
- * @param {JSXAttribute} attribute -
- * @returns {JSXExpressionContainer}
- */
-function getAttributeConditionExpression(babelTypes, nameAttribute, attribute) { // {{{
-  if (typeof attribute === 'undefined' || attribute.value === null) {
-    return babelTypes.booleanLiteral(true);
-  }
-
-  return attribute.value.expression;
 } // }}}
 
 /**
@@ -132,20 +98,18 @@ function getjSXElement(babelTypes, name, attributes, children) { // {{{
     babelTypes.JSXOpeningElement(
       babelTypes.jSXIdentifier(name),
       attributes,
-      true
+      true,
     ),
     null,
     children,
-    true
+    true,
   );
 } // }}}
 
 module.exports = {
-  getAttributes: getAttributes,
-  getAttribute: getAttribute,
-  getAttributeValue: getAttributeValue,
-  getVariableDeclaration: getVariableDeclaration,
-  getAttributeConditionExpression: getAttributeConditionExpression,
-  getChildren: getChildren,
-  getjSXElement: getjSXElement
+  getAttributes,
+  getAttribute,
+  getAttributeValue,
+  getChildren,
+  getjSXElement,
 };
