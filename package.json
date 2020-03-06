@@ -2,10 +2,16 @@
   "name": "babel-plugin-jsx-conditional-component",
   "version": "0.1.4",
   "description": "Neater control exists component or component type for jsx",
+  "scripts": {
+    "lint": "eslint src spec *.js --ignore-pattern '!*.js'",
+    "test": "mocha spec/*.js",
+    "cover": "istanbul cover -x \"**/spec/**\" node_modules/mocha/bin/_mocha spec/*.js",
+    "upgrade": "ncu -u && npm i",
+    "postversion": "npm publish && git push && git push --tags"
+  },
   "author": {
     "name": "Yurii Khmelevskii",
     "email": "y@uwinart.com",
-    "postversion": "npm publish && git push && git push --tags"
   },
   "contributors": [
     {
@@ -30,12 +36,6 @@
     "react-component"
   ],
   "license": "MIT",
-  "scripts": {
-    "lint": "eslint src spec *.js --ignore-pattern '!*.js'",
-    "test": "mocha spec/*.js",
-    "cover": "istanbul cover -x \"**/spec/**\" node_modules/mocha/bin/_mocha spec/*.js",
-    "upgrade": "ncu -u && npm i"
-  },
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.7.4",
     "@babel/template": "^7.7.4"
