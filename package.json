@@ -1,63 +1,61 @@
 {
-  "name": "babel-plugin-jsx-conditional-component",
-  "version": "0.1.4",
-  "description": "Neater control exists component or component type for jsx",
-  "scripts": {
-    "lint": "eslint src spec *.js --ignore-pattern '!*.js'",
-    "test": "mocha spec/*.js",
-    "cover": "istanbul cover -x \"**/spec/**\" node_modules/mocha/bin/_mocha spec/*.js",
-    "upgrade": "ncu -u && npm i",
-    "postversion": "npm publish && git push && git push --tags"
-  },
-  "author": {
-    "name": "Yurii Khmelevskii",
-    "email": "y@uwinart.com",
-  },
-  "contributors": [
-    {
-      "name": "Andrey Gubanov",
-      "email": "andrey@gubanov.eu"
-    }
-  ],
-  "main": "src/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/finom/babel-plugin-jsx-conditional-component"
-  },
-  "bugs": {
-    "url": "https://github.com/finom/babel-plugin-jsx-conditional-component/issues"
-  },
-  "keywords": [
-    "react",
-    "jsx",
-    "exists",
-    "base",
-    "babel",
-    "react-component"
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "@babel/plugin-syntax-jsx": "^7.7.4",
-    "@babel/template": "^7.7.4"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.7.5",
-    "@babel/preset-react": "^7.7.4",
-    "@babel/register": "^7.7.4",
-    "babel-eslint": "^10.0.3",
-    "chai": "^4.2.0",
-    "chai-enzyme": "^1.0.0-beta.0",
-    "coveralls": "^3.0.9",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
-    "eslint": "^6.7.2",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-react": "^7.17.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^6.2.2",
-    "react": "^16.12.x",
-    "react-dom": "^16.12.x",
-    "npm-check-updates": "^3.2.2"
-  }
+	"name": "babel-plugin-jsx-conditional-component",
+	"version": "0.1.4",
+	"description": "Neater control exists component or component type for jsx",
+	"scripts": {
+		"lint": "eslint src spec *.js --ignore-pattern '!*.js'",
+		"test": "mocha spec/*.js",
+		"cover": "istanbul cover -x \"**/spec/**\" node_modules/mocha/bin/_mocha spec/*.js",
+		"upgrade": "ncu -u && npm i",
+		"postversion": "npm publish && git push && git push --tags"
+	},
+	"author": {
+		"name": "Yurii Khmelevskii",
+		"email": "y@uwinart.com"
+	},
+	"contributors": [{
+		"name": "Andrey Gubanov",
+		"email": "andrey@gubanov.eu"
+	}],
+	"main": "src/index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/finom/babel-plugin-jsx-conditional-component"
+	},
+	"bugs": {
+		"url": "https://github.com/finom/babel-plugin-jsx-conditional-component/issues"
+	},
+	"keywords": [
+		"react",
+		"jsx",
+		"exists",
+		"base",
+		"babel",
+		"react-component"
+	],
+	"license": "MIT",
+	"dependencies": {
+		"@babel/plugin-syntax-jsx": "^7.7.4",
+		"@babel/template": "^7.7.4"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.7.5",
+		"@babel/preset-react": "^7.7.4",
+		"@babel/register": "^7.7.4",
+		"babel-eslint": "^10.0.3",
+		"chai": "^4.2.0",
+		"chai-enzyme": "^1.0.0-beta.0",
+		"coveralls": "^3.0.9",
+		"enzyme": "^3.10.0",
+		"enzyme-adapter-react-16": "^1.15.1",
+		"eslint": "^6.7.2",
+		"eslint-config-airbnb": "^18.0.1",
+		"eslint-plugin-import": "^2.19.1",
+		"eslint-plugin-react": "^7.17.0",
+		"istanbul": "^0.4.5",
+		"mocha": "^6.2.2",
+		"react": "^16.12.x",
+		"react-dom": "^16.12.x",
+		"npm-check-updates": "^3.2.2"
+	}
 }
