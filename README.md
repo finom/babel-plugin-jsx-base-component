@@ -1,8 +1,8 @@
-# babel-plugin-jsx-base-component
+# babel-plugin-jsx-conditional-component
 
-[![Build Status](https://travis-ci.org/khmelevskii/babel-plugin-jsx-base-component.svg?branch=master)](https://travis-ci.org/khmelevskii/babel-plugin-jsx-base-component)
-[![Coverage Status](https://coveralls.io/repos/github/khmelevskii/babel-plugin-jsx-base-component/badge.svg)](https://coveralls.io/github/khmelevskii/babel-plugin-jsx-base-component)
-[![npm version](https://img.shields.io/npm/v/babel-plugin-jsx-base-component.svg?style=flat)](https://www.npmjs.com/package/babel-plugin-jsx-base-component)
+[![Build Status](https://travis-ci.org/finom/babel-plugin-jsx-conditional-component.svg?branch=master)](https://travis-ci.org/finom/babel-plugin-jsx-conditional-component)
+[![Coverage Status](https://coveralls.io/repos/github/finom/babel-plugin-jsx-conditional-component/badge.svg)](https://coveralls.io/github/finom/babel-plugin-jsx-conditional-component)
+[![npm version](https://img.shields.io/npm/v/babel-plugin-jsx-conditional-component.svg?style=flat)](https://www.npmjs.com/package/babel-plugin-jsx-conditional-component)
 
 This is Babel 7 plugin allowing to use `<Base />` component in your `jsx`.
 It has two properties:
@@ -78,7 +78,7 @@ As a prerequisite you need to have [Babel](https://github.com/babel/babel) insta
 Install via npm:
 
 ```
-  npm install babel-plugin-jsx-base-component --save-dev
+  npm install babel-plugin-jsx-conditional-component --save-dev
 ```
 
 Then you only need to specify `jsx-base-component` as Babel plugin, which you would typically do in your `.babelrc`:

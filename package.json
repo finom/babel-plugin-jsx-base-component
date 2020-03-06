@@ -1,18 +1,23 @@
 {
-  "name": "babel-plugin-jsx-base-component",
+  "name": "babel-plugin-jsx-conditional-component",
   "version": "0.1.2",
   "description": "Neater control exists component or component type for jsx",
   "author": {
     "name": "Yurii Khmelevskii",
-    "email": "y@uwinart.com"
+    "email": "y@uwinart.com",
+    "postversion": "npm publish && git push && git push --tags"
   },
+  "contributors": [{
+    "name": "Andrey Gubanov",
+    "email": "andrey@gubanov.eu"
+  }],
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/khmelevskii/babel-plugin-jsx-base-component"
+    "url": "https://github.com/finom/babel-plugin-jsx-conditional-component"
   },
   "bugs": {
-    "url": "https://github.com/khmelevskii/babel-plugin-jsx-base-component/issues"
+    "url": "https://github.com/finom/babel-plugin-jsx-conditional-component/issues"
   },
   "keywords": [
     "react",
