@@ -1,16 +1,18 @@
 {
   "name": "babel-plugin-jsx-conditional-component",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Neater control exists component or component type for jsx",
   "author": {
     "name": "Yurii Khmelevskii",
     "email": "y@uwinart.com",
     "postversion": "npm publish && git push && git push --tags"
   },
-  "contributors": [{
-    "name": "Andrey Gubanov",
-    "email": "andrey@gubanov.eu"
-  }],
+  "contributors": [
+    {
+      "name": "Andrey Gubanov",
+      "email": "andrey@gubanov.eu"
+    }
+  ],
   "main": "src/index.js",
   "repository": {
     "type": "git",
