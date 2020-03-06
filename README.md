@@ -4,6 +4,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/finom/babel-plugin-jsx-conditional-component/badge.svg)](https://coveralls.io/github/finom/babel-plugin-jsx-conditional-component)
 [![npm version](https://img.shields.io/npm/v/babel-plugin-jsx-conditional-component.svg?style=flat)](https://www.npmjs.com/package/babel-plugin-jsx-conditional-component)
 
+> The plugin is a fork of [babel-plugin-jsx-base-component](https://github.com/khmelevskii/babel-plugin-jsx-base-component) made by [Yurii Khmelvskii](https://github.com/khmelevskii). Originally it was forked to add support for Babel 7 but unfortunately my PR wasn't approved.
+
 This is Babel 7 plugin allowing to use `<Base />` component in your `jsx`.
 It has two properties:
 - `exists` - specifies whether the component content is shown
