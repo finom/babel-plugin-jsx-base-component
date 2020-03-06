@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-jsx-conditional-component",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Neater control exists component or component type for jsx",
   "author": {
     "name": "Yurii Khmelevskii",
